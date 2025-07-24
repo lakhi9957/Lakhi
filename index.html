@@ -1,23 +1,367 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>School Home</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Excellence Academy">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Excellence Academy">
+    
+    <title>Excellence Academy - Premier Tuition Center</title>
+    <meta name="description" content="Premier tuition center providing quality education with expert teachers, personalized attention, and proven teaching methods.">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Apple Touch Icons -->
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/icon-128x128.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/icon-72x72.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/icon-72x72.png">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">School</a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container mt-4">
-  <h1>Welcome to Our School</h1>
-  <p>This is the homepage of your school website.</p>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Excellence Academy</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#courses" class="nav-link">Courses</a></li>
+                <li><a href="#teachers" class="nav-link">Teachers</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#enrollment" class="nav-link btn-enroll">Enroll Now</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Excellence in Education</h1>
+            <p>Unlock your potential with our expert tutors and proven teaching methods</p>
+            <div class="hero-buttons">
+                <a href="#courses" class="btn btn-primary">Explore Courses</a>
+                <a href="#contact" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="student-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>5000+</h3>
+                <p>Students Enrolled</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Excellence Academy</h2>
+                <p>Dedicated to providing quality education and nurturing academic excellence</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Why Choose Us?</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check"></i> Expert qualified teachers</li>
+                        <li><i class="fas fa-check"></i> Small batch sizes for personalized attention</li>
+                        <li><i class="fas fa-check"></i> Regular assessments and progress tracking</li>
+                        <li><i class="fas fa-check"></i> Modern teaching methods and technology</li>
+                        <li><i class="fas fa-check"></i> Flexible timings and affordable fees</li>
+                    </ul>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>15+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>98%</h3>
+                        <p>Success Rate</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Expert Teachers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Courses</h2>
+                <p>Comprehensive programs designed for academic success</p>
+            </div>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Mathematics</h3>
+                    <p>From basic arithmetic to advanced calculus, we make math easy and enjoyable.</p>
+                    <div class="course-details">
+                        <span class="grade">Grade 1-12</span>
+                        <span class="price">$50/month</span>
+                    </div>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Science</h3>
+                    <p>Physics, Chemistry, and Biology taught with practical experiments and real examples.</p>
+                    <div class="course-details">
+                        <span class="grade">Grade 6-12</span>
+                        <span class="price">$60/month</span>
+                    </div>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>English</h3>
+                    <p>Improve reading, writing, and communication skills with our comprehensive program.</p>
+                    <div class="course-details">
+                        <span class="grade">Grade 1-12</span>
+                        <span class="price">$45/month</span>
+                    </div>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Computer Science</h3>
+                    <p>Programming, web development, and computer fundamentals for the digital age.</p>
+                    <div class="course-details">
+                        <span class="grade">Grade 9-12</span>
+                        <span class="price">$70/month</span>
+                    </div>
+                    <button class="btn btn-outline">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section id="teachers" class="teachers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our Expert Teachers</h2>
+                <p>Dedicated professionals committed to your success</p>
+            </div>
+            <div class="teachers-grid">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Dr. Sarah Johnson</h3>
+                    <p class="subject">Mathematics & Physics</p>
+                    <p class="experience">15+ years experience</p>
+                    <div class="teacher-qualifications">
+                        <span>PhD Mathematics</span>
+                        <span>MIT Graduate</span>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Prof. Michael Chen</h3>
+                    <p class="subject">Chemistry & Biology</p>
+                    <p class="experience">12+ years experience</p>
+                    <div class="teacher-qualifications">
+                        <span>PhD Chemistry</span>
+                        <span>Harvard Graduate</span>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3>Ms. Emily Davis</h3>
+                    <p class="subject">English & Literature</p>
+                    <p class="experience">10+ years experience</p>
+                    <div class="teacher-qualifications">
+                        <span>MA English</span>
+                        <span>Oxford Graduate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enrollment Section -->
+    <section id="enrollment" class="enrollment">
+        <div class="container">
+            <div class="enrollment-content">
+                <h2>Ready to Start Your Journey?</h2>
+                <p>Join thousands of successful students at Excellence Academy</p>
+                <form class="enrollment-form">
+                    <div class="form-row">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-row">
+                        <input type="tel" placeholder="Phone Number" required>
+                        <select required>
+                            <option value="">Select Grade</option>
+                            <option value="1-5">Grade 1-5</option>
+                            <option value="6-8">Grade 6-8</option>
+                            <option value="9-10">Grade 9-10</option>
+                            <option value="11-12">Grade 11-12</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <select required>
+                            <option value="">Select Course</option>
+                            <option value="mathematics">Mathematics</option>
+                            <option value="science">Science</option>
+                            <option value="english">English</option>
+                            <option value="computer">Computer Science</option>
+                        </select>
+                        <select required>
+                            <option value="">Preferred Time</option>
+                            <option value="morning">Morning (9AM-12PM)</option>
+                            <option value="afternoon">Afternoon (2PM-5PM)</option>
+                            <option value="evening">Evening (6PM-8PM)</option>
+                        </select>
+                    </div>
+                    <textarea placeholder="Additional Message (Optional)"></textarea>
+                    <button type="submit" class="btn btn-primary">Submit Enrollment</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>We're here to help you succeed</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>123 Education Street<br>Learning City, LC 12345</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@excellenceacademy.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon-Fri: 8AM-8PM<br>Sat-Sun: 9AM-6PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Excellence Academy</span>
+                    </div>
+                    <p>Empowering students to achieve academic excellence and unlock their full potential.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                        <li><a href="#teachers">Teachers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Courses</h4>
+                    <ul>
+                        <li><a href="#">Mathematics</a></li>
+                        <li><a href="#">Science</a></li>
+                        <li><a href="#">English</a></li>
+                        <li><a href="#">Computer Science</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Education Street, Learning City</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@excellenceacademy.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Excellence Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
