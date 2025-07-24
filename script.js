@@ -8,7 +8,188 @@ document.addEventListener('DOMContentLoaded', function() {
     initMobileMenu();
     initCounters();
     initCourseCards();
+    initPWA();
 });
+
+// Initialize PWA features
+function initPWA() {
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                    
+                    // Check for updates
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                showNotification('App updated! Refresh to see changes.', 'info');
+                            }
+                        });
+                    });
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+        });
+    }
+    
+    // Install prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallPrompt();
+    });
+    
+    // Handle app installation
+    window.addEventListener('appinstalled', (evt) => {
+        console.log('App was installed');
+        showNotification('App installed successfully! Welcome to Excellence Academy!', 'success');
+    });
+}
+
+// Show install prompt
+function showInstallPrompt() {
+    const installBanner = document.createElement('div');
+    installBanner.className = 'install-banner';
+    installBanner.innerHTML = `
+        <div class="install-content">
+            <i class="fas fa-mobile-alt"></i>
+            <div class="install-text">
+                <h4>Install Excellence Academy App</h4>
+                <p>Get the full app experience with offline access!</p>
+            </div>
+            <button class="btn-install" onclick="installApp()">Install</button>
+            <button class="btn-close" onclick="closeInstallPrompt()">&times;</button>
+        </div>
+    `;
+    
+    // Add install banner styles
+    if (!document.querySelector('#install-styles')) {
+        const style = document.createElement('style');
+        style.id = 'install-styles';
+        style.textContent = `
+            .install-banner {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+                padding: 20px;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                z-index: 2000;
+                transform: translateY(100%);
+                animation: slideUp 0.5s ease forwards;
+            }
+            .install-content {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+            }
+            .install-content i {
+                font-size: 2rem;
+                color: #fbbf24;
+            }
+            .install-text {
+                flex: 1;
+            }
+            .install-text h4 {
+                margin: 0 0 5px 0;
+                font-size: 1.1rem;
+            }
+            .install-text p {
+                margin: 0;
+                font-size: 0.9rem;
+                opacity: 0.9;
+            }
+            .btn-install {
+                background: #fbbf24;
+                color: #1f2937;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 25px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .btn-install:hover {
+                background: #f59e0b;
+                transform: translateY(-2px);
+            }
+            .btn-close {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 5px;
+                margin-left: 10px;
+            }
+            @keyframes slideUp {
+                to { transform: translateY(0); }
+            }
+            @media (max-width: 768px) {
+                .install-banner {
+                    left: 10px;
+                    right: 10px;
+                    bottom: 10px;
+                }
+                .install-content {
+                    flex-direction: column;
+                    text-align: center;
+                    gap: 10px;
+                }
+                .btn-close {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    margin: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(installBanner);
+    
+    // Auto hide after 10 seconds
+    setTimeout(() => {
+        if (document.querySelector('.install-banner')) {
+            closeInstallPrompt();
+        }
+    }, 10000);
+}
+
+// Install app function
+function installApp() {
+    const installBanner = document.querySelector('.install-banner');
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the install prompt');
+            } else {
+                console.log('User dismissed the install prompt');
+            }
+            deferredPrompt = null;
+            if (installBanner) installBanner.remove();
+        });
+    }
+}
+
+// Close install prompt
+function closeInstallPrompt() {
+    const installBanner = document.querySelector('.install-banner');
+    if (installBanner) {
+        installBanner.style.transform = 'translateY(100%)';
+        setTimeout(() => installBanner.remove(), 300);
+    }
+}
 
 // Navigation functionality
 function initNavigation() {

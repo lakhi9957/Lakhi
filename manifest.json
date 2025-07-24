@@ -1,0 +1,86 @@
+{
+  "name": "Excellence Academy - Tuition Center",
+  "short_name": "Excellence Academy",
+  "description": "Premier tuition center for academic excellence",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#667eea",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "categories": ["education", "learning"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Enroll Now",
+      "short_name": "Enroll",
+      "description": "Quick enrollment for new students",
+      "url": "/#enrollment",
+      "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Contact Us",
+      "short_name": "Contact",
+      "description": "Get in touch with us",
+      "url": "/#contact",
+      "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "View Courses",
+      "short_name": "Courses",
+      "description": "Browse our course offerings",
+      "url": "/#courses",
+      "icons": [{ "src": "icons/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ],
+  "prefer_related_applications": false
+}

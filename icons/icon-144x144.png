@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144" height="144" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="72" cy="72" r="72" fill="url(#gradient)"/>
+  
+  <!-- Graduation Cap -->
+  <g transform="translate(72, 72)">
+    <!-- Cap Base -->
+    <ellipse cx="0" cy="-18" rx="48" ry="24" fill="#fbbf24"/>
+    
+    <!-- Cap Top -->
+    <polygon points="-48,-36 48,-36 36,-48 -36,-48" fill="#f59e0b"/>
+    
+    <!-- Tassel -->
+    <circle cx="36" cy="-48" r="7" fill="#ef4444"/>
+    <line x1="36" y1="-48" x2="48" y2="-24" stroke="#ef4444" stroke-width="3"/>
+    
+    <!-- Book -->
+    <rect x="-24" y="12" width="48" height="36" rx="3" fill="white"/>
+    <line x1="-18" y1="24" x2="18" y2="24" stroke="#2563eb" stroke-width="2"/>
+    <line x1="-18" y1="36" x2="18" y2="36" stroke="#2563eb" stroke-width="2"/>
+  </g>
+</svg>
