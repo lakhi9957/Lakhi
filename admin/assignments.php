@@ -169,8 +169,13 @@ $assignments_query = "SELECT a.*, c.name as class_name, s.name as subject_name,
                       ORDER BY a.created_at DESC";
 $assignments = $conn->query($assignments_query);
 
-// Get classes for dropdown
-$classes = $conn->query("SELECT c.*, s.name as subject_name FROM classes c JOIN subjects s ON c.subject_id = s.id ORDER BY c.name ASC");
+// Get classes for dropdown with better info
+$classes = $conn->query("SELECT c.*, s.name as subject_name, s.code as subject_code, u.name as teacher_name 
+                        FROM classes c 
+                        JOIN subjects s ON c.subject_id = s.id 
+                        LEFT JOIN teachers t ON c.teacher_id = t.id 
+                        LEFT JOIN users u ON t.user_id = u.id 
+                        ORDER BY c.name ASC");
 
 // Get teachers for dropdown
 $teachers = $conn->query("SELECT t.*, u.name FROM teachers t JOIN users u ON t.user_id = u.id WHERE t.status = 'active' ORDER BY u.name ASC");
@@ -380,11 +385,15 @@ if ($action === 'submissions' && $assignment_id) {
                                                 <label for="class_id" class="form-label">Class *</label>
                                                 <select class="form-select" id="class_id" name="class_id" required>
                                                     <option value="">Select Class</option>
-                                                    <?php while ($class = $classes->fetch_assoc()): ?>
-                                                        <option value="<?php echo $class['id']; ?>">
-                                                            <?php echo $class['name'] . ' - ' . $class['subject_name']; ?>
-                                                        </option>
-                                                    <?php endwhile; ?>
+                                                    <?php if ($classes && $classes->num_rows > 0): ?>
+                                                        <?php while ($class = $classes->fetch_assoc()): ?>
+                                                            <option value="<?php echo $class['id']; ?>">
+                                                                <?php echo $class['name'] . ' - ' . $class['subject_name'] . ' (' . ($class['teacher_name'] ?? 'No Teacher') . ')'; ?>
+                                                            </option>
+                                                        <?php endwhile; ?>
+                                                    <?php else: ?>
+                                                        <option value="" disabled>No classes available - Please create classes first</option>
+                                                    <?php endif; ?>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 mb-3">
