@@ -154,18 +154,42 @@ if ($action === 'edit' && $assignment_id) {
     $assignment_edit = $stmt->get_result()->fetch_assoc();
 }
 
+// Filter parameter
+$filter = $_GET['filter'] ?? 'active';
+
 // Get assignments list with details
+$filter_condition = "";
+if ($filter === 'completed') {
+    // Show only assignments where all enrolled students have submitted
+    $filter_condition = "HAVING submission_count > 0 AND submission_count >= enrolled_students";
+} elseif ($filter === 'pending') {
+    // Show only assignments where some students haven't submitted yet
+    $filter_condition = "HAVING submission_count < enrolled_students OR enrolled_students = 0";
+} elseif ($filter === 'overdue') {
+    // Show only overdue assignments
+    $filter_condition = "AND a.due_date < NOW() HAVING submission_count < enrolled_students OR enrolled_students = 0";
+}
+
 $assignments_query = "SELECT a.*, c.name as class_name, s.name as subject_name, 
                              t.teacher_id, u.name as teacher_name,
                              COUNT(sub.id) as submission_count,
-                             COUNT(CASE WHEN sub.marks_obtained IS NOT NULL THEN 1 END) as graded_count
+                             COUNT(CASE WHEN sub.marks_obtained IS NOT NULL THEN 1 END) as graded_count,
+                             COUNT(e.id) as enrolled_students,
+                             CASE 
+                                 WHEN a.due_date < NOW() THEN 'overdue'
+                                 WHEN COUNT(sub.id) >= COUNT(e.id) AND COUNT(e.id) > 0 THEN 'completed'
+                                 ELSE 'active'
+                             END as status
                       FROM assignments a 
                       JOIN classes c ON a.class_id = c.id 
                       JOIN subjects s ON c.subject_id = s.id 
                       JOIN teachers t ON a.teacher_id = t.id 
                       JOIN users u ON t.user_id = u.id 
                       LEFT JOIN assignment_submissions sub ON a.id = sub.assignment_id
+                      LEFT JOIN enrollments e ON c.id = e.class_id AND e.status = 'active'
+                      WHERE 1=1 $filter_condition
                       GROUP BY a.id
+                      $filter_condition
                       ORDER BY a.created_at DESC";
 $assignments = $conn->query($assignments_query);
 
@@ -330,15 +354,21 @@ if ($action === 'submissions' && $assignment_id) {
                                     <a href="assignments.php?action=add" class="btn btn-primary me-2">
                                         <i class="fas fa-plus me-1"></i>Create Assignment
                                     </a>
-                                    <div class="dropdown">
-                                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                            <i class="fas fa-filter me-1"></i>Filter
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-clock me-2"></i>Due Today</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-exclamation me-2"></i>Overdue</a></li>
-                                            <li><a class="dropdown-item" href="#"><i class="fas fa-check me-2"></i>Completed</a></li>
-                                        </ul>
+                                    
+                                    <!-- Filter Buttons -->
+                                    <div class="btn-group me-2" role="group">
+                                        <a href="assignments.php?filter=active" class="btn <?php echo $filter === 'active' ? 'btn-success' : 'btn-outline-success'; ?>">
+                                            <i class="fas fa-play me-1"></i>Active
+                                        </a>
+                                        <a href="assignments.php?filter=pending" class="btn <?php echo $filter === 'pending' ? 'btn-warning' : 'btn-outline-warning'; ?>">
+                                            <i class="fas fa-clock me-1"></i>Pending
+                                        </a>
+                                        <a href="assignments.php?filter=completed" class="btn <?php echo $filter === 'completed' ? 'btn-info' : 'btn-outline-info'; ?>">
+                                            <i class="fas fa-check me-1"></i>Completed
+                                        </a>
+                                        <a href="assignments.php?filter=overdue" class="btn <?php echo $filter === 'overdue' ? 'btn-danger' : 'btn-outline-danger'; ?>">
+                                            <i class="fas fa-exclamation me-1"></i>Overdue
+                                        </a>
                                     </div>
                                 <?php elseif ($action === 'submissions'): ?>
                                     <a href="assignments.php" class="btn btn-outline-secondary me-2">
@@ -696,19 +726,46 @@ if ($action === 'submissions' && $assignment_id) {
                                                         </td>
                                                         <td><?php echo $assignment['max_marks']; ?></td>
                                                         <td>
-                                                            <span class="badge bg-info"><?php echo $assignment['submission_count']; ?></span>
-                                                            <span class="badge bg-success"><?php echo $assignment['graded_count']; ?> graded</span>
+                                                            <div class="d-flex flex-column gap-1">
+                                                                <div>
+                                                                    <span class="badge bg-info"><?php echo $assignment['submission_count']; ?>/<?php echo $assignment['enrolled_students']; ?></span>
+                                                                    <small class="text-muted">submitted</small>
+                                                                </div>
+                                                                <div>
+                                                                    <span class="badge bg-success"><?php echo $assignment['graded_count']; ?></span>
+                                                                    <small class="text-muted">graded</small>
+                                                                </div>
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <?php
-                                                            $due_date = strtotime($assignment['due_date']);
-                                                            $now = time();
-                                                            if ($due_date < $now): ?>
-                                                                <span class="badge bg-danger">Overdue</span>
-                                                            <?php elseif ($due_date < $now + 86400): ?>
-                                                                <span class="badge bg-warning">Due Soon</span>
-                                                            <?php else: ?>
-                                                                <span class="badge bg-success">Active</span>
+                                                            $status = $assignment['status'];
+                                                            $badge_class = 'bg-secondary';
+                                                            $icon = 'fas fa-question';
+                                                            
+                                                            switch($status) {
+                                                                case 'active':
+                                                                    $badge_class = 'bg-success';
+                                                                    $icon = 'fas fa-play';
+                                                                    break;
+                                                                case 'completed':
+                                                                    $badge_class = 'bg-info';
+                                                                    $icon = 'fas fa-check';
+                                                                    break;
+                                                                case 'overdue':
+                                                                    $badge_class = 'bg-danger';
+                                                                    $icon = 'fas fa-exclamation';
+                                                                    break;
+                                                            }
+                                                            ?>
+                                                            <span class="badge <?php echo $badge_class; ?>">
+                                                                <i class="<?php echo $icon; ?> me-1"></i><?php echo ucfirst($status); ?>
+                                                            </span>
+                                                            
+                                                            <?php if ($assignment['submission_count'] == $assignment['enrolled_students'] && $assignment['enrolled_students'] > 0): ?>
+                                                                <br><small class="text-success"><i class="fas fa-check-circle"></i> All submitted</small>
+                                                            <?php elseif ($assignment['submission_count'] > 0): ?>
+                                                                <br><small class="text-warning"><i class="fas fa-clock"></i> Partially submitted</small>
                                                             <?php endif; ?>
                                                         </td>
                                                         <td>
