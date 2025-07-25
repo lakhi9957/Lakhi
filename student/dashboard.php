@@ -286,8 +286,11 @@ $announcements = $conn->query($announcements_query);
                             <!-- Assignments -->
                             <div class="col-lg-6 mb-4">
                                 <div class="card">
-                                    <div class="card-header bg-white">
+                                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
                                         <h5 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Recent Assignments</h5>
+                                        <a href="assignments.php" class="btn btn-sm btn-outline-primary">
+                                            <i class="fas fa-eye me-1"></i>View All
+                                        </a>
                                     </div>
                                     <div class="card-body">
                                         <?php if ($assignments->num_rows > 0): ?>

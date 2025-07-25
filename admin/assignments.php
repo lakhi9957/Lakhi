@@ -187,10 +187,9 @@ $assignments_query = "SELECT a.*, c.name as class_name, s.name as subject_name,
                       JOIN users u ON t.user_id = u.id 
                       LEFT JOIN assignment_submissions sub ON a.id = sub.assignment_id
                       LEFT JOIN enrollments e ON c.id = e.class_id AND e.status = 'active'
-                      WHERE 1=1 $filter_condition
-                      GROUP BY a.id
-                      $filter_condition
-                      ORDER BY a.created_at DESC";
+                                             GROUP BY a.id
+                       $filter_condition
+                       ORDER BY a.created_at DESC";
 $assignments = $conn->query($assignments_query);
 
 // Get classes for dropdown with better info
