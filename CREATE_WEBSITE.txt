@@ -1,0 +1,178 @@
+SCHOOL WEBSITE - FILE CREATION GUIDE
+=====================================
+
+Follow these steps to create your complete school website:
+
+STEP 1: Create Directory Structure
+==================================
+school-website/
+├── index.html
+├── style.css  
+├── script.js
+├── config.php
+├── db.sql
+├── admin_demo.php
+├── fix_admin_login.php
+├── images/ (empty folder)
+├── admin/
+│   ├── register.php
+│   ├── login.php  
+│   ├── dashboard.php
+│   ├── logout.php
+│   └── auth.php
+└── api/
+    ├── notices.php
+    └── gallery.php
+
+STEP 2: Copy Code for Each File
+===============================
+
+FILE 1: index.html
+------------------
+Copy the complete HTML code from my previous message starting with:
+<!DOCTYPE html>
+<html lang="en">
+...ending with...
+</html>
+
+FILE 2: style.css
+------------------
+Copy the complete CSS code starting with:
+/* Custom CSS for School Website */
+...ending with...
+border-color: var(--primary-color) !important;
+
+FILE 3: script.js
+-----------------
+Copy the complete JavaScript code starting with:
+// School Website JavaScript
+...ending with...
+};
+
+FILE 4: config.php
+-------------------
+<?php
+$host = 'localhost';
+$user = 'root';
+$pass = '';
+$db = 'school_db';
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+  die('Connection failed: ' . $conn->connect_error);
+}
+?>
+
+FILE 5: db.sql
+---------------
+CREATE DATABASE IF NOT EXISTS school_db;
+USE school_db;
+
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(255),
+  role ENUM('student', 'teacher', 'admin'),
+  verified BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_login TIMESTAMP NULL
+);
+
+CREATE TABLE notices (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  priority ENUM('low', 'medium', 'high') DEFAULT 'medium',
+  date_created DATE NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE gallery (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  image_path VARCHAR(500) NOT NULL,
+  category VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+STEP 3: Admin Panel Files
+=========================
+
+FILE 6: admin/register.php
+---------------------------
+Copy the complete registration code from my previous message
+
+FILE 7: admin/login.php
+-----------------------
+Copy the complete login code from my previous message
+
+FILE 8: admin/dashboard.php
+---------------------------
+Copy the complete dashboard code from my previous message
+
+FILE 9: admin/logout.php
+------------------------
+<?php
+session_start();
+session_destroy();
+header('Location: login.php');
+exit();
+?>
+
+FILE 10: admin/auth.php
+-----------------------
+Copy the complete authentication system code
+
+STEP 4: API Files
+=================
+
+FILE 11: api/notices.php
+------------------------
+Copy the notices API code from my previous message
+
+FILE 12: api/gallery.php
+------------------------
+Copy the gallery API code from my previous message
+
+STEP 5: Utility Files
+====================
+
+FILE 13: admin_demo.php
+-----------------------
+Copy the demo page code
+
+FILE 14: fix_admin_login.php
+----------------------------
+Copy the admin fix script code
+
+STEP 6: Create ZIP File
+=======================
+
+1. Select the entire 'school-website' folder
+2. Right-click and choose 'Compress' or 'Send to > Compressed folder'
+3. Name it 'school-website.zip'
+
+STEP 7: Setup Instructions
+=========================
+
+1. Extract ZIP file to web server directory
+2. Import db.sql to MySQL
+3. Run fix_admin_login.php to create admin user
+4. Access admin/login.php with: admin@school.edu / admin123
+5. Or register new admin with code: SCHOOL2024
+
+QUICK ACCESS URLS:
+==================
+- Main Website: index.html
+- Admin Demo: admin_demo.php  
+- Admin Registration: admin/register.php
+- Admin Login: admin/login.php
+- Admin Fix: fix_admin_login.php
+
+ADMIN CREDENTIALS:
+==================
+Default: admin@school.edu / admin123
+Registration Code: SCHOOL2024
+
+That's it! Your complete school website is ready.
