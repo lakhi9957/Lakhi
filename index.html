@@ -1,23 +1,198 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>School Home</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bright Future School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">School</a>
-  <div class="collapse navbar-collapse">
-    <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>
-  </div>
-</nav>
-<div class="container mt-4">
-  <h1>Welcome to Our School</h1>
-  <p>This is the homepage of your school website.</p>
-</div>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <i class="fas fa-graduation-cap"></i> Bright Future School
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#notices">Notices</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admin/login.php">Admin</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 text-white mb-4">Welcome to Bright Future School</h1>
+                        <p class="lead text-white mb-4">Nurturing minds, building futures. Excellence in education since 1985.</p>
+                        <a href="#about" class="btn btn-light btn-lg">Learn More</a>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="images/school-building.jpg" alt="School Building" class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">About Our School</h2>
+                    <p class="section-subtitle">Discover what makes us special</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="about-content">
+                        <h3>Our Mission</h3>
+                        <p>To provide quality education that empowers students to become confident, creative, and responsible global citizens.</p>
+                        
+                        <h3>Our Vision</h3>
+                        <p>To be a leading educational institution that inspires excellence and innovation in learning.</p>
+                        
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Excellence in teaching and learning</li>
+                            <li>Respect for diversity and inclusion</li>
+                            <li>Innovation and creativity</li>
+                            <li>Community engagement</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>1,200+</h3>
+                                <p>Students</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>80+</h3>
+                                <p>Teachers</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>95%</h3>
+                                <p>Success Rate</p>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>15+</h3>
+                                <p>Facilities</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">School Gallery</h2>
+                    <p class="section-subtitle">Glimpses of life at our school</p>
+                </div>
+            </div>
+            <div class="row" id="gallery-container">
+                <!-- Gallery images will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Notices Section -->
+    <section id="notices" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Latest Notices</h2>
+                    <p class="section-subtitle">Stay updated with school announcements</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div id="notices-container">
+                        <!-- Notices will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h5>Bright Future School</h5>
+                    <p>123 Education Street, Learning City, LC 12345</p>
+                    <p>Phone: (555) 123-4567 | Email: info@brightfuture.edu</p>
+                </div>
+                <div class="col-lg-6 text-end">
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>&copy; 2024 Bright Future School. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
 </body>
 </html>
