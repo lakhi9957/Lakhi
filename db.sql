@@ -7,7 +7,9 @@ CREATE TABLE users (
   email VARCHAR(100) UNIQUE,
   password VARCHAR(255),
   role ENUM('student', 'teacher', 'admin'),
-  verified BOOLEAN DEFAULT FALSE
+  verified BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  last_login TIMESTAMP NULL
 );
 
 CREATE TABLE notices (

@@ -140,7 +140,14 @@ if ($_POST) {
                     </form>
                     
                     <div class="text-center mt-3">
-                        <a href="../index.html" class="text-decoration-none">
+                        <p class="mb-2">Don't have an admin account?</p>
+                        <a href="register.php" class="text-decoration-none">
+                            <i class="fas fa-user-plus"></i> Register as Admin
+                        </a>
+                    </div>
+                    
+                    <div class="text-center mt-3">
+                        <a href="../index.html" class="text-decoration-none text-muted">
                             <i class="fas fa-arrow-left"></i> Back to Website
                         </a>
                     </div>
