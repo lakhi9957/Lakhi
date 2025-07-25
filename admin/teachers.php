@@ -82,10 +82,10 @@ if ($_POST) {
             $stmt = $conn->prepare("UPDATE users SET name = ?, email = ?, phone = ?, address = ? WHERE id = ?");
             $stmt->bind_param("ssssi", $name, $email, $phone, $address, $user_id);
             
-            if ($stmt->execute()) {
-                // Update teacher record
-                $stmt = $conn->prepare("UPDATE teachers SET qualification = ?, experience_years = ?, specialization = ?, salary = ?, status = ? WHERE id = ?");
-                $stmt->bind_param("sissi", $qualification, $experience_years, $specialization, $salary, $status, $teacher_db_id);
+                         if ($stmt->execute()) {
+                 // Update teacher record
+                                   $stmt = $conn->prepare("UPDATE teachers SET qualification = ?, experience_years = ?, specialization = ?, salary = ?, status = ? WHERE id = ?");
+                                     $stmt->bind_param("sisssi", $qualification, $experience_years, $specialization, $salary, $status, $teacher_db_id);
                 
                 if ($stmt->execute()) {
                     $success = 'Teacher updated successfully!';
