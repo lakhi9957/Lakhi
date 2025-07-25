@@ -29,5 +29,6 @@ CREATE TABLE gallery (
 );
 
 -- Insert a default admin user (password: admin123)
-INSERT INTO users (name, email, password, role, verified) 
-VALUES ('Admin User', 'admin@school.edu', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin', TRUE);
+-- Note: Run create_admin.php to create the admin user with proper password hashing
+-- INSERT INTO users (name, email, password, role, verified) 
+-- VALUES ('Admin User', 'admin@school.edu', '[password_hash_here]', 'admin', TRUE);
