@@ -46,10 +46,10 @@
             <p>
                 Admissions are open for the academic year 2025–2026. Fill out the form below to enquire:
             </p>
-            <form id="admissionForm">
-                <input type="text" id="name" placeholder="Your Name" required>
-                <input type="email" id="email" placeholder="Your Email" required>
-                <input type="text" id="grade" placeholder="Grade Applying For" required>
+           <form id="admissionForm" action="submit_admission.php" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required>
+                 <input type="email" name="email" placeholder="Your Email" required>
+                <input type="text" name="grade" placeholder="Grade Applying For" required>
                 <button type="submit">Submit</button>
             </form>
             <div id="formMessage"></div>
